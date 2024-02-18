@@ -1,0 +1,30 @@
+class MinMaxWordFinder:
+    def __init__(self):
+        self.shortest = []
+        self.longest = []
+
+    def add_sentence(self, sentence):
+        words = sentence.split()
+        shortest_word_len = len(min(words, key=len))
+        longest_word_len = len(max(words, key=len))
+
+        for word in words:
+            if len(word) == shortest_word_len and word not in self.shortest:
+                self.shortest.append(word)
+            elif len(word) == longest_word_len and word not in self.longest:
+                self.longest.append(word)
+
+        self.shortest.sort()
+        self.longest.sort()
+
+    def shortest_words(self):
+        return self.shortest
+
+    def longest_words(self):
+        return self.longest
+
+finder = MinMaxWordFinder()
+finder.add_sentence('hello abc world')
+finder.add_sentence('def asdf qwert')
+print(' '.join(finder.shortest_words()))
+print(' '.join(finder.longest_words()))
